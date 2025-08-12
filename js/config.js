@@ -22,103 +22,85 @@ const SITE_CONFIG = {
 
 // API站点配置
 const API_SITES = {
-    dbzy: {
-        api: 'https://dbzy.tv/api.php/provide/vod',
-        name: '豆瓣资源',
-    },
-    dyttzy: {
-        api: 'http://caiji.dyttzyapi.com/api.php/provide/vod',
-        name: '电影天堂资源',
-        detail: 'http://caiji.dyttzyapi.com', 
-    },
-    ruyi: {
-        api: 'https://cj.rycjapi.com/api.php/provide/vod',
-        name: '如意资源',
-    },
     bfzy: {
         api: 'https://bfzyapi.com/api.php/provide/vod',
-        name: '暴风资源',
-    },
-    tyyszy: {
-        api: 'https://tyyszy.com/api.php/provide/vod',
-        name: '天涯资源',
-    },
-    xiaomaomi: {
-        api: 'https://zy.xmm.hk/api.php/provide/vod',
-        name: '小猫咪资源',
-    },
-    ffzy: {
-        api: 'http://ffzy5.tv/api.php/provide/vod',
-        name: '非凡影视',
-        detail: 'http://ffzy5.tv', 
-    },
-    heimuer: {
-        api: 'https://json.heimuer.xyz/api.php/provide/vod',
-        name: '黑木耳',
-        detail: 'https://heimuer.tv', 
-    },
-    zy360: {
-        api: 'https://360zy.com/api.php/provide/vod',
-        name: '360资源',
-    },
-    iqiyi: {
-        api: 'https://www.iqiyizyapi.com/api.php/provide/vod',
-        name: 'iqiyi资源',
-    },
-    wolong: {
-        api: 'https://wolongzyw.com/api.php/provide/vod',
-        name: '卧龙资源',
-    }, 
-    hwba: {
-        api: 'https://cjhwba.com/api.php/provide/vod',
-        name: '华为吧资源',
-    },
+        name: '暴风资源'  // 平均 392ms
+    },  // ✅ 无水印，加载快
+    ruyi: {
+        api: 'https://cj.rycjapi.com/api.php/provide/vod',
+        name: '如意资源'  // 平均 268ms
+    },  // ✅ 无水印，加载快，但无片头不完整
+    // zuid: {
+    //     api: 'https://api.zuidapi.com/api.php/provide/vod',
+    //     name: '最大资源'  // 平均 76ms - 最快且最稳定
+    // },   // 无法播放
+    // lzi: {
+    //     api: 'https://cj.lziapi.com/api.php/provide/vod',
+    //     name: '量子资源站'  // 平均 79ms
+    // },   // 无法播放
     jisu: {
         api: 'https://jszyapi.com/api.php/provide/vod',
         name: '极速资源',
-        detail: 'https://jszyapi.com', 
+        detail: 'https://jszyapi.com'  // 平均 101ms
     },
-    mozhua: {
-        api: 'https://mozhuazy.com/api.php/provide/vod',
-        name: '魔爪资源',
+    wolong: {
+        api: 'https://wolongzyw.com/api.php/provide/vod',
+        name: '卧龙资源'  // 平均 209ms
     },
-    mdzy: {
-        api: 'https://www.mdzyapi.com/api.php/provide/vod',
-        name: '魔都资源',
-    },
-    zuid: {
-        api: 'https://api.zuidapi.com/api.php/provide/vod',
-        name: '最大资源'
-    },
-    yinghua: {
-        api: 'https://m3u8.apiyhzy.com/api.php/provide/vod',
-        name: '樱花资源'
+    tyyszy: {
+        api: 'https://tyyszy.com/api.php/provide/vod',
+        name: '天涯资源'  // 平均 218ms
     },
     baidu: {
         api: 'https://api.apibdzy.com/api.php/provide/vod',
-        name: '百度云资源'
+        name: '百度资源'  // 平均 230ms
     },
-    wujin: {
-        api: 'https://api.wujinapi.me/api.php/provide/vod',
-        name: '无尽资源'
-    },
+    // wujin: {
+    //     api: 'https://api.wujinapi.me/api.php/provide/vod',
+    //     name: '无尽资源'  // 平均 232ms
+    // },  // 无法播放
     wwzy: {
         api: 'https://wwzy.tv/api.php/provide/vod',
-        name: '旺旺短剧'
+        name: '旺旺短剧'  // 平均 287ms
     },
-    ikun: {
-        api: 'https://ikunzyapi.com/api.php/provide/vod',
-        name: 'iKun资源'
+    mozhua: {
+        api: 'https://mozhuazy.com/api.php/provide/vod',
+        name: '魔爪资源'  // 平均 304ms
     },
-    lzi: {
-        api: 'https://cj.lziapi.com/api.php/provide/vod/',
-        name: '量子资源站'
+    dbzy: {
+        api: 'https://dbzy.tv/api.php/provide/vod',
+        name: '豆瓣资源'  // 平均 323ms
+    },  // 水印大！
+    // yinghua: {
+    //     api: 'https://m3u8.apiyhzy.com/api.php/provide/vod',
+    //     name: '樱花资源'  // 平均 346ms
+    // },  // 成人广告，搜索功能差
+    // dyttzy: {
+    //     api: 'http://caiji.dyttzyapi.com/api.php/provide/vod',
+    //     name: '电影天堂',
+    //     detail: 'http://caiji.dyttzyapi.com'  // 平均 470ms
+    // },  // 无法播放
+    // ikun: {
+    //     api: 'https://ikunzyapi.com/api.php/provide/vod',
+    //     name: 'iKun资源'  // 平均 544ms
+    // },  // 无法播放
+    // zy360: {
+    //     api: 'https://360zy.com/api.php/provide/vod',
+    //     name: '360资源'  // 平均 681ms
+    // },  // 集数混乱
+    // ffzy: {
+    //     api: 'http://ffzy5.tv/api.php/provide/vod',
+    //     name: '非凡影视',
+    //     detail: 'http://ffzy5.tv'  // 平均 1012ms
+    // },  // 无法播放
+    mdzy: {
+        api: 'https://www.mdzyapi.com/api.php/provide/vod',
+        name: '魔都资源'  // 平均 1341ms
     },
-    testSource: {
-        api: 'https://www.example.com/api.php/provide/vod',
-        name: '空内容测试源',
-        adult: true
-    },
+    // xiaomaomi: {
+    //     api: 'https://zy.xmm.hk/api.php/provide/vod',
+    //     name: '小猫咪资源'  // 平均 1574ms - 最慢
+    // },  // 无法播放
 };
 
 // 定义合并方法
