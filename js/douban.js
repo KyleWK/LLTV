@@ -189,71 +189,71 @@ function fillAndSearch(title) {
 }
 
 // 填充搜索框，确保豆瓣资源API被选中，然后执行搜索
-async function fillAndSearchWithDouban(title) {
-    if (!title) return;
+// async function fillAndSearchWithDouban(title) {
+//     if (!title) return;
     
-    // 安全处理标题，防止XSS
-    const safeTitle = title
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;');
+//     // 安全处理标题，防止XSS
+//     const safeTitle = title
+//         .replace(/</g, '&lt;')
+//         .replace(/>/g, '&gt;')
+//         .replace(/"/g, '&quot;');
     
-    // 确保豆瓣资源API被选中
-    if (typeof selectedAPIs !== 'undefined' && !selectedAPIs.includes('dbzy')) {
-        // 在设置中勾选豆瓣资源API复选框
-        const doubanCheckbox = document.querySelector('input[id="api_dbzy"]');
-        if (doubanCheckbox) {
-            doubanCheckbox.checked = true;
+//     // 确保豆瓣资源API被选中
+//     if (typeof selectedAPIs !== 'undefined' && !selectedAPIs.includes('dbzy')) {
+//         // 在设置中勾选豆瓣资源API复选框
+//         const doubanCheckbox = document.querySelector('input[id="api_dbzy"]');
+//         if (doubanCheckbox) {
+//             doubanCheckbox.checked = true;
             
-            // 触发updateSelectedAPIs函数以更新状态
-            if (typeof updateSelectedAPIs === 'function') {
-                updateSelectedAPIs();
-            } else {
-                // 如果函数不可用，则手动添加到selectedAPIs
-                selectedAPIs.push('dbzy');
-                localStorage.setItem('selectedAPIs', JSON.stringify(selectedAPIs));
+//             // 触发updateSelectedAPIs函数以更新状态
+//             if (typeof updateSelectedAPIs === 'function') {
+//                 updateSelectedAPIs();
+//             } else {
+//                 // 如果函数不可用，则手动添加到selectedAPIs
+//                 selectedAPIs.push('dbzy');
+//                 localStorage.setItem('selectedAPIs', JSON.stringify(selectedAPIs));
                 
-                // 更新选中API计数（如果有这个元素）
-                const countEl = document.getElementById('selectedAPICount');
-                if (countEl) {
-                    countEl.textContent = selectedAPIs.length;
-                }
-            }
+//                 // 更新选中API计数（如果有这个元素）
+//                 const countEl = document.getElementById('selectedAPICount');
+//                 if (countEl) {
+//                     countEl.textContent = selectedAPIs.length;
+//                 }
+//             }
             
-            showToast('已自动选择豆瓣资源API', 'info');
-        }
-    }
+//             showToast('已自动选择豆瓣资源API', 'info');
+//         }
+//     }
     
-    // 填充搜索框并执行搜索
-    const input = document.getElementById('searchInput');
-    if (input) {
-        input.value = safeTitle;
-        await search(); // 使用已有的search函数执行搜索
+//     // 填充搜索框并执行搜索
+//     const input = document.getElementById('searchInput');
+//     if (input) {
+//         input.value = safeTitle;
+//         await search(); // 使用已有的search函数执行搜索
         
-        // 更新浏览器URL，使其反映当前的搜索状态
-        try {
-            // 使用URI编码确保特殊字符能够正确显示
-            const encodedQuery = encodeURIComponent(safeTitle);
-            // 使用HTML5 History API更新URL，不刷新页面
-            window.history.pushState(
-                { search: safeTitle }, 
-                `搜索: ${safeTitle} - LibreTV`, 
-                `/s=${encodedQuery}`
-            );
-            // 更新页面标题
-            document.title = `搜索: ${safeTitle} - LibreTV`;
-        } catch (e) {
-            console.error('更新浏览器历史失败:', e);
-        }
+//         // 更新浏览器URL，使其反映当前的搜索状态
+//         try {
+//             // 使用URI编码确保特殊字符能够正确显示
+//             const encodedQuery = encodeURIComponent(safeTitle);
+//             // 使用HTML5 History API更新URL，不刷新页面
+//             window.history.pushState(
+//                 { search: safeTitle }, 
+//                 `搜索: ${safeTitle} - LibreTV`, 
+//                 `/s=${encodedQuery}`
+//             );
+//             // 更新页面标题
+//             document.title = `搜索: ${safeTitle} - LibreTV`;
+//         } catch (e) {
+//             console.error('更新浏览器历史失败:', e);
+//         }
 
-        if (window.innerWidth <= 768) {
-          window.scrollTo({
-              top: 0,
-              behavior: 'smooth'
-          });
-        }
-    }
-}
+//         if (window.innerWidth <= 768) {
+//           window.scrollTo({
+//               top: 0,
+//               behavior: 'smooth'
+//           });
+//         }
+//     }
+// }
 
 // 渲染电影/电视剧切换器
 function renderDoubanMovieTvSwitch() {
@@ -537,7 +537,7 @@ function renderDoubanCards(data, container) {
             
             // 为不同设备优化卡片布局
             card.innerHTML = `
-                <div class="relative w-full aspect-[2/3] overflow-hidden cursor-pointer" onclick="fillAndSearchWithDouban('${safeTitle}')">
+                <div class="relative w-full aspect-[2/3] overflow-hidden cursor-pointer" onclick="search('${safeTitle}')">
                     <img src="${originalCoverUrl}" alt="${safeTitle}" 
                         class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                         onerror="this.onerror=null; this.src='${proxiedCoverUrl}'; this.classList.add('object-contain');"
@@ -553,7 +553,7 @@ function renderDoubanCards(data, container) {
                     </div>
                 </div>
                 <div class="p-2 text-center bg-[#111]">
-                    <button onclick="fillAndSearchWithDouban('${safeTitle}')" 
+                    <button onclick="search('${safeTitle}')" 
                             class="text-sm font-medium text-white truncate w-full hover:text-pink-400 transition"
                             title="${safeTitle}">
                         ${safeTitle}

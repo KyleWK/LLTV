@@ -462,7 +462,7 @@ function getCustomApiInfo(customApiIndex) {
 }
 
 // 搜索功能 - 修改为支持多选API和多页结果
-async function search() {
+async function search(keyword = '') {
     // 强化的密码保护校验 - 防止绕过
     try {
         if (window.ensurePasswordProtection) {
@@ -480,7 +480,7 @@ async function search() {
         console.warn('Password protection check failed:', error.message);
         return;
     }
-    const query = document.getElementById('searchInput').value.trim();
+    const query = keyword || document.getElementById('searchInput').value.trim();
 
     if (!query) {
         showToast('请输入搜索内容', 'info');
